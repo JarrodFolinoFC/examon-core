@@ -1,7 +1,7 @@
 import random
 
 
-def prepare_choices(choice_list, correct_answer):
+def prepare_choices(choice_list, correct_answer, shuffle=True):
     def append_answer(choices, answer):
         if answer not in choices:
             choices.append(answer)
@@ -14,5 +14,6 @@ def prepare_choices(choice_list, correct_answer):
         return choice_dict
 
     choice_list = append_answer(choice_list, correct_answer)
-    random.shuffle(choice_list)
+    if shuffle:
+        random.shuffle(choice_list)
     return list_to_choices_dict(choice_list)
