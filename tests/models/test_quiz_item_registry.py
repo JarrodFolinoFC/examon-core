@@ -17,4 +17,4 @@ class TestQuizItemRegistry:
                          '  return 1',
             correct_answer='1')
         registry.add(question)
-        assert len(registry.registry()) is 1
+        assert len(registry.registry()) == 1

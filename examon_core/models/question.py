@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Any
 
+
 @dataclass
 class BaseQuestion:
     choices: dict = None
@@ -15,6 +16,7 @@ class ExpectedResultQuestion(BaseQuestion):
 
     def answer(self, choice):
         return self.choices[choice] == self.correct_answer
+
 
 @dataclass
 class InputParameterQuestion(BaseQuestion):

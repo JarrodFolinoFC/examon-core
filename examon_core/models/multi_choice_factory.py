@@ -1,4 +1,5 @@
-from .choice_helper import *
+import random
+
 
 class MultiChoiceFactory:
 
@@ -8,7 +9,6 @@ class MultiChoiceFactory:
             cls.add_incorrect_answer(choice_list, correct_answer)
         choices = cls.prepare_choices(choice_list, correct_answer)
         return choices
-
 
     @classmethod
     def add_incorrect_answer(cls, choice_list, correct_answer):
@@ -21,7 +21,7 @@ class MultiChoiceFactory:
         elif type(correct_answer) == dict:
             choice_list.append(correct_answer | {'hello': 'there'})
         elif type(correct_answer) == set:
-            choice_list.append({1,2})
+            choice_list.append({1, 2})
         elif type(correct_answer) == bool:
             choice_list.append(False)
             choice_list.append(True)

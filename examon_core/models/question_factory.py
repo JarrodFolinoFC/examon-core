@@ -1,7 +1,7 @@
-from .question import ExpectedResultQuestion, InputParameterQuestion, FreeTextQuestion
+from .question import ExpectedResultQuestion, \
+    InputParameterQuestion, FreeTextQuestion
 from .multi_choice_factory import MultiChoiceFactory
-from .fn_to_txt import *
-from .choice_helper import *
+from .fn_to_txt import function_as_txt
 
 import random
 
@@ -14,25 +14,31 @@ class QuestionFactory:
         hints = kwargs['hints']
         correct_answer = QuestionFactory.run_function(function=function)
 
-        if kwargs['choice_list'] != None:
+        if kwargs['choice_list'] is not None:
             choices = MultiChoiceFactory.build(correct_answer,
                                                kwargs['generated_choices'],
                                                kwargs['choice_list'])
             return QuestionFactory.build_multichoice(choices, correct_answer,
-                                                   function, hints, tags)
-        elif kwargs['param1'] != None:
+                                                     function, hints, tags)
+        elif kwargs['param1'] is not None:
             param1 = kwargs['param1']
             choices = {}
             for idx, param in enumerate(param1):
                 choices[chr(idx + 97)] = param
 
             selected_input = random.choice(param1)
-            return_value = QuestionFactory.run_function_with_param(function, selected_input)
+            return_value = QuestionFactory.run_function_with_param(
+                function, selected_input
+            )
 
-            return QuestionFactory.build_select_input(choices, return_value,
-                                                       function, hints, tags, selected_input)
+            return QuestionFactory.build_select_input(
+                choices, return_value,
+                function, hints, tags, selected_input
+            )
         else:
-            return QuestionFactory.build_free_text(correct_answer, function, hints, tags)
+            return QuestionFactory.build_free_text(
+                correct_answer, function, hints, tags
+            )
 
     @staticmethod
     def build_free_text(correct_answer, function, hints, tags):
@@ -58,7 +64,8 @@ class QuestionFactory:
         return question
 
     @staticmethod
-    def build_select_input(choices, correct_answer, function, hints, tags, selected_param):
+    def build_select_input(choices, correct_answer, function,
+                           hints, tags, selected_param):
         question = InputParameterQuestion(
             tags=tags,
             hints=hints,
@@ -69,7 +76,6 @@ class QuestionFactory:
             return_value=correct_answer,
             choices=choices)
         return question
-
 
     @staticmethod
     def run_function(function):

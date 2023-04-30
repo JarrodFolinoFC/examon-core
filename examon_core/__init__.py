@@ -1,1 +1,1 @@
-__all__ = ['lib', 'models']
+__all__ = ['models']

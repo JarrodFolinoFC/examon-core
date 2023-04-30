@@ -5,7 +5,7 @@ import re
 def function_as_txt(function, hints):
     def build_hints(hints):
         hint_summary = ''
-        if hints == None:
+        if hints is None:
             return hint_summary
         else:
             for hint in hints:

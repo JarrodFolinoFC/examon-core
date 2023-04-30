@@ -1,5 +1,6 @@
 from examon_core.models.fn_to_txt import function_as_txt
 
+
 def function1():
     return 1 - 7
 

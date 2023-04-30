@@ -6,7 +6,6 @@ def question_fn():
     return 4 + 3
 
 
-
 class TestQuestionFactory:
     def test_build(self):
         question = QuestionFactory.build(
