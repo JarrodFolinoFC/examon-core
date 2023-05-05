@@ -1,4 +1,8 @@
-from examon_core.models.question import FreeTextQuestion
+import os
+import sys
+sys.path.append(f'{os.path.abspath("")}/src/models')
+
+from question import FreeTextQuestion
 
 function_src = """
 def question():

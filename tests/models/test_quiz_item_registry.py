@@ -1,5 +1,9 @@
-from examon_core.models.quiz_item_registry import QuizItemRegistry
-from examon_core.models.question import FreeTextQuestion
+import os
+import sys
+sys.path.append(f'{os.path.abspath("")}/src/models')
+
+from quiz_item_registry import QuizItemRegistry
+from question import FreeTextQuestion
 
 function_src = """
 def question(x):

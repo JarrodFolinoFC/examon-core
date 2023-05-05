@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "examon-core"
-version = "0.3.0"
+version = "0.3.7"
 description = ""
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
 readme = "README.md"
-packages = [{include = "examon_core"}]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"

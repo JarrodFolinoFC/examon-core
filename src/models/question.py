@@ -8,6 +8,7 @@ class BaseQuestion:
     function_src: str = None
     tags: list = None
     hints: list = None
+    print_logs: list = None
 
 
 @dataclass

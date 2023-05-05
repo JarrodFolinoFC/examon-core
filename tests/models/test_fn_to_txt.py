@@ -1,4 +1,8 @@
-from examon_core.models.fn_to_txt import function_as_txt
+import os
+import sys
+sys.path.append(f'{os.path.abspath("")}/src/models')
+
+from fn_to_txt import function_as_txt
 
 
 def function1():

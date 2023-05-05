@@ -1,4 +1,8 @@
-from examon_core.models.question import InputParameterQuestion
+import os
+import sys
+sys.path.append(f'{os.path.abspath("")}/src/models')
+
+from question import InputParameterQuestion
 
 function_src = """
 def question(x):
