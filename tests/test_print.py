@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(f'{os.path.abspath("")}/src/ext')
+sys.path.append(f'{os.path.abspath("")}/examon_core')
 from print_ext import PrintLog, print
 
 

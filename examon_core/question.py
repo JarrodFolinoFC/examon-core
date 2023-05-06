@@ -15,8 +15,8 @@ class BaseQuestion:
 class ExpectedResultQuestion(BaseQuestion):
     correct_answer: str = None
 
-    def answer(self, choice):
-        return self.choices[choice] == self.correct_answer
+    def answer(self, given_answer):
+        return self.correct_answer == given_answer
 
 
 @dataclass
@@ -25,7 +25,7 @@ class InputParameterQuestion(BaseQuestion):
     selected_param: str = None
 
     def answer(self, choice):
-        return self.choices[choice] == self.selected_param
+        return choice == self.selected_param
 
 
 @dataclass

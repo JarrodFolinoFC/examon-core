@@ -1,12 +1,7 @@
-import os
-import sys
-sys.path.append(os.path.abspath(""))
-sys.path.append(f'{os.path.abspath("")}/../ext')
-from question import ExpectedResultQuestion, InputParameterQuestion, FreeTextQuestion
-from multi_choice_factory import MultiChoiceFactory
-from fn_to_txt import function_as_txt
-
-from print_ext import PrintLog
+from .question import ExpectedResultQuestion, InputParameterQuestion, FreeTextQuestion
+from .multi_choice_factory import MultiChoiceFactory
+from .fn_to_txt import function_as_txt
+from .print_ext import PrintLog
 
 import random
 
@@ -26,23 +21,17 @@ class QuestionFactory:
 
         if kwargs['choice_list'] is not None:
             choices = MultiChoiceFactory.build(correct_answer,
-                                               kwargs['generated_choices'],
                                                kwargs['choice_list'])
             return QuestionFactory.build_multichoice(choices, correct_answer,
                                                      function, hints, tags, print_logs)
         elif kwargs['param1'] is not None:
-            param1 = kwargs['param1']
-            choices = {}
-            for idx, param in enumerate(param1):
-                choices[chr(idx + 97)] = param
-
-            selected_input = random.choice(param1)
+            selected_input = random.choice(kwargs['param1'])
             return_value = QuestionFactory.run_function_with_param(
                 function, selected_input
             )
 
             return QuestionFactory.build_select_input(
-                choices, return_value,
+                kwargs['param1'], return_value,
                 function, hints, tags, selected_input, print_logs
             )
         else:

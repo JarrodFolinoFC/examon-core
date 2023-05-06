@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(f'{os.path.abspath("")}/src/models')
+sys.path.append(f'{os.path.abspath("")}/examon_core')
 
 from quiz_item_registry import QuizItemRegistry
 from question import FreeTextQuestion

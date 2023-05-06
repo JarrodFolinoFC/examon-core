@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(f'{os.path.abspath("")}/src/models')
+sys.path.append(f'{os.path.abspath("")}/examon_core')
 
 from fn_to_txt import function_as_txt
 

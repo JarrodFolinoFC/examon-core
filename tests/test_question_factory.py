@@ -1,11 +1,10 @@
 import os
 import sys
-sys.path.append(f'{os.path.abspath("")}/src/models')
-sys.path.append(f'{os.path.abspath("")}/src/ext')
+sys.path.append(f'{os.path.abspath("")}/examon_core')
 
-from question_factory import QuestionFactory
-from question import ExpectedResultQuestion
-from print_ext import print, PrintLog
+from examon_core.question_factory import QuestionFactory
+from examon_core.question import ExpectedResultQuestion
+from examon_core.print_ext import print
 
 def question_fn():
     print('test')
@@ -29,3 +28,9 @@ class TestQuestionFactory:
             function=question_fn, tags=['a'], hints=[], choice_list=[7, 6],
             generated_choices=None, param1=None)
         assert question.print_logs[0] == ('test', 1)
+
+    def test_choices(self):
+        question = QuestionFactory.build(
+            function=question_fn, tags=['a'], hints=[], choice_list=[7, 6],
+            generated_choices=None, param1=None)
+        assert question.choices == [7, 6]

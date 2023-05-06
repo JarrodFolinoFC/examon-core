@@ -1,13 +1,17 @@
 [tool.poetry]
-name = "examon-core"
-version = "0.3.7"
-description = ""
+name = "examon_core"
+version = "0.5.5"
+description = "Examon Core Libs"
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
-readme = "README.md"
-packages = [{include = "src"}]
+packages = [{include = "examon_core"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+
+[[tool.poetry.source]]
+name = "test"
+url = "https://test.pypi.org/simple/"
+secondary = true
 
 [tool.poetry.dev-dependencies]
 pytest = "7.2.1"
