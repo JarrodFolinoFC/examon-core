@@ -1,4 +1,4 @@
-from .question import ExpectedResultQuestion, InputParameterQuestion, FreeTextQuestion
+from .question import ExpectedResultQuestion, InputParameterQuestion
 from .multi_choice_factory import MultiChoiceFactory
 from .fn_to_txt import function_as_txt
 from .print_ext import PrintLog
@@ -13,6 +13,11 @@ class QuestionFactory:
         function = kwargs['function']
         tags = kwargs['tags']
         hints = kwargs['hints']
+        param1 = kwargs['param1']
+        choice_list = kwargs['choice_list']
+        fn_string = function_as_txt(function, hints)
+
+        # Print Logs
         first_line_no = function.__code__.co_firstlineno
         PrintLog.reset()
         correct_answer = QuestionFactory.run_function(function=function)
@@ -20,41 +25,34 @@ class QuestionFactory:
         print_logs = PrintLog.logs()
         PrintLog.reset()
 
-        fn_string = function_as_txt(function, hints)
-        if kwargs['choice_list'] is not None:
-            choices = MultiChoiceFactory.build(correct_answer,
-                                               kwargs['choice_list'])
-            question = ExpectedResultQuestion(choices=choices)
-        elif kwargs['param1'] is not None:
-            selected_input = random.choice(kwargs['param1'])
+        # Code Metrics
+        metrics = CodeMetricsFactory.build(fn_string)
+
+        # Build
+        if choice_list is not None:
+            question = ExpectedResultQuestion(
+                choices=(MultiChoiceFactory.build(correct_answer, choice_list))
+            )
+        elif param1 is not None:
+            selected_input = random.choice(param1)
             return_value = QuestionFactory.run_function_with_param(
                 function, selected_input
             )
 
-            question = QuestionFactory.build_select_input(
-                kwargs['param1'], return_value,
-                selected_input
+            question = InputParameterQuestion(
+                selected_param=return_value,
+                choices=param1
             )
         else:
-            question = FreeTextQuestion()
+            question = ExpectedResultQuestion()
 
-
-        code_metrics = CodeMetricsFactory.build(fn_string)
-        question.metrics = code_metrics
+        question.metrics = metrics
         question.correct_answer = correct_answer
         question.hints = hints
         question.tags = tags
         question.print_logs = print_logs
         question.function_src = fn_string
         return question
-
-
-    @staticmethod
-    def build_select_input(choices, selected_param):
-        return InputParameterQuestion(
-            selected_param=selected_param,
-            choices=choices
-        )
 
     @staticmethod
     def run_function(function):

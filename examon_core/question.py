@@ -29,11 +29,3 @@ class InputParameterQuestion(BaseQuestion):
 
     def answer(self, choice):
         return choice == self.selected_param
-
-
-@dataclass
-class FreeTextQuestion(BaseQuestion):
-    correct_answer: Any = None
-
-    def answer(self, given_answer):
-        return self.correct_answer == given_answer

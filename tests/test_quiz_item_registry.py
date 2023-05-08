@@ -3,7 +3,7 @@ import sys
 sys.path.append(f'{os.path.abspath("")}/examon_core')
 
 from quiz_item_registry import QuizItemRegistry
-from question import FreeTextQuestion
+from question import ExpectedResultQuestion
 
 function_src = """
 def question(x):
@@ -14,7 +14,7 @@ def question(x):
 class TestQuizItemRegistry:
     def test_adds_question(self):
         registry = QuizItemRegistry()
-        question = FreeTextQuestion(
+        question = ExpectedResultQuestion(
             tags=[],
             hints=None,
             function_src='def hello:'
