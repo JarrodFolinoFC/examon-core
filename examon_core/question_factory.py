@@ -1,4 +1,4 @@
-from .question import ExpectedResultQuestion, InputParameterQuestion
+from .question import ExpectedResultQuestion, InputParameterQuestion, BaseQuestion
 from .multi_choice_factory import MultiChoiceFactory
 from .fn_to_txt import function_as_txt
 from .print_ext import PrintLog
@@ -29,22 +29,24 @@ class QuestionFactory:
         metrics = CodeMetricsFactory.build(fn_string)
 
         # Build
-        if choice_list is not None:
-            question = ExpectedResultQuestion(
-                choices=(MultiChoiceFactory.build(correct_answer, choice_list))
-            )
-        elif param1 is not None:
-            selected_input = random.choice(param1)
+        if param1 is not None:
+            selected_input_param = random.choice(param1)
             return_value = QuestionFactory.run_function_with_param(
-                function, selected_input
+                function, selected_input_param
             )
 
             question = InputParameterQuestion(
-                selected_param=return_value,
+                selected_param=selected_input_param,
                 choices=param1
             )
+            question.return_value = return_value
         else:
-            question = ExpectedResultQuestion()
+            if choice_list is not None:
+                question = ExpectedResultQuestion(
+                    choices=(MultiChoiceFactory.build(correct_answer, choice_list))
+                )
+            else:
+                question = BaseQuestion()
 
         question.metrics = metrics
         question.correct_answer = correct_answer

@@ -1,5 +1,3 @@
-from code_metrics import CodeMetrics
-
 from dataclasses import dataclass
 from typing import Any
 
@@ -11,15 +9,16 @@ class BaseQuestion:
     tags: list = None
     hints: list = None
     print_logs: list = None
-    metrics: CodeMetrics = None
+    metrics: Any = None
+
+    def answer(self, given_answer):
+        return self.correct_answer == given_answer
 
 
 @dataclass
 class ExpectedResultQuestion(BaseQuestion):
     correct_answer: str = None
 
-    def answer(self, given_answer):
-        return self.correct_answer == given_answer
 
 
 @dataclass

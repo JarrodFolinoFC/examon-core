@@ -2,7 +2,7 @@ import inspect
 import re
 
 
-def function_as_txt(function, hints):
+def function_raw_code(function, hints):
     def build_hints(hints):
         hint_summary = ''
         if hints is None:
@@ -15,7 +15,7 @@ def function_as_txt(function, hints):
     def function_src(function):
         return inspect.getsource(function).strip()
 
-    def format_src(src):
+    def remove_quiz_item_decorator(src):
         src = re.sub('@quiz\\_item\\(.*\\)', '', src)
         return src
 
@@ -23,4 +23,5 @@ def function_as_txt(function, hints):
         return f'\n\nprint({function.__name__}())'
 
     src = function_src(function) + append_print(function)
-    return build_hints(hints) + format_src(src)
+    src = remove_quiz_item_decorator(src)
+    return build_hints(hints) + src

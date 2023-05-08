@@ -16,8 +16,8 @@ def question_fn():
 class TestQuestionFactory:
     def test_build(self):
         question = QuestionFactory.build(
-            function=question_fn, tags=['a'], hints=[], choice_list=[7, 6],
-            generated_choices=None, param1=None)
+            function=question_fn, tags=['a'],
+            hints=[], choice_list=[7, 6])
         assert isinstance(question, ExpectedResultQuestion)
         assert question.tags == ['a']
         assert len(question.choices) == 2
@@ -25,12 +25,12 @@ class TestQuestionFactory:
 
     def test_print_logs(self):
         question = QuestionFactory.build(
-            function=question_fn, tags=['a'], hints=[], choice_list=[7, 6],
-            generated_choices=None, param1=None)
+            function=question_fn, tags=['a'],
+            hints=[], choice_list=[7, 6])
         assert question.print_logs[0] == ('test', 1)
 
     def test_choices(self):
         question = QuestionFactory.build(
-            function=question_fn, tags=['a'], hints=[], choice_list=[7, 6],
-            generated_choices=None, param1=None)
+            function=question_fn, tags=['a'],
+            hints=[], choice_list=[7, 6])
         assert question.choices == [7, 6]

@@ -1,6 +1,6 @@
 from functools import wraps
-from quiz_item_registry import QuizItemRegistry
-from question_factory import QuestionFactory
+from .quiz_item_registry import QuizItemRegistry
+from .question_factory import QuestionFactory
 
 
 def quiz_item(choices=None, tags=None, hints=None,
@@ -10,7 +10,7 @@ def quiz_item(choices=None, tags=None, hints=None,
             function=function, choice_list=choices,
             tags=tags, hints=hints,
             generated_choices=generated_choices,
-            param1=param1)
+            param1=param1, metrics=True)
         QuizItemRegistry.add(processed_question)
 
         @wraps(function)
