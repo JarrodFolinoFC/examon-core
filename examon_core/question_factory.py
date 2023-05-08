@@ -2,6 +2,7 @@ from .question import ExpectedResultQuestion, InputParameterQuestion, FreeTextQu
 from .multi_choice_factory import MultiChoiceFactory
 from .fn_to_txt import function_as_txt
 from .print_ext import PrintLog
+from .code_metrics_factory import CodeMetricsFactory
 
 import random
 
@@ -19,66 +20,41 @@ class QuestionFactory:
         print_logs = PrintLog.logs()
         PrintLog.reset()
 
+        fn_string = function_as_txt(function, hints)
         if kwargs['choice_list'] is not None:
             choices = MultiChoiceFactory.build(correct_answer,
                                                kwargs['choice_list'])
-            return QuestionFactory.build_multichoice(choices, correct_answer,
-                                                     function, hints, tags, print_logs)
+            question = ExpectedResultQuestion(choices=choices)
         elif kwargs['param1'] is not None:
             selected_input = random.choice(kwargs['param1'])
             return_value = QuestionFactory.run_function_with_param(
                 function, selected_input
             )
 
-            return QuestionFactory.build_select_input(
+            question = QuestionFactory.build_select_input(
                 kwargs['param1'], return_value,
-                function, hints, tags, selected_input, print_logs
+                selected_input
             )
         else:
-            return QuestionFactory.build_free_text(
-                correct_answer, function, hints, tags, print_logs
-            )
+            question = FreeTextQuestion()
 
-    @staticmethod
-    def build_free_text(correct_answer, function, hints, tags, print_logs):
-        question = FreeTextQuestion(
-            tags=tags,
-            hints=hints,
-            function_src=function_as_txt(
-                function=function,
-                hints=hints),
-            correct_answer=correct_answer,
-            print_logs=print_logs)
+
+        code_metrics = CodeMetricsFactory.build(fn_string)
+        question.metrics = code_metrics
+        question.correct_answer = correct_answer
+        question.hints = hints
+        question.tags = tags
+        question.print_logs = print_logs
+        question.function_src = fn_string
         return question
 
-    @staticmethod
-    def build_multichoice(choices, correct_answer, function, hints, tags, print_logs):
-        question = ExpectedResultQuestion(
-            tags=tags,
-            hints=hints,
-            function_src=function_as_txt(
-                function=function,
-                hints=hints),
-            correct_answer=correct_answer,
-            choices=choices,
-            print_logs=print_logs)
-        return question
 
     @staticmethod
-    def build_select_input(choices, correct_answer, function,
-                           hints, tags, selected_param, print_logs):
-        question = InputParameterQuestion(
-            tags=tags,
-            hints=hints,
-            function_src=function_as_txt(
-                function=function,
-                hints=hints),
+    def build_select_input(choices, selected_param):
+        return InputParameterQuestion(
             selected_param=selected_param,
-            return_value=correct_answer,
-            choices=choices,
-            print_logs=print_logs
+            choices=choices
         )
-        return question
 
     @staticmethod
     def run_function(function):

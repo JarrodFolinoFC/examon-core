@@ -1,3 +1,5 @@
+from code_metrics import CodeMetrics
+
 from dataclasses import dataclass
 from typing import Any
 
@@ -9,6 +11,7 @@ class BaseQuestion:
     tags: list = None
     hints: list = None
     print_logs: list = None
+    metrics: CodeMetrics = None
 
 
 @dataclass

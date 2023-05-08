@@ -1,6 +1,6 @@
 from functools import wraps
-from .quiz_item_registry import QuizItemRegistry
-from .question_factory import QuestionFactory
+from quiz_item_registry import QuizItemRegistry
+from question_factory import QuestionFactory
 
 
 def quiz_item(choices=None, tags=None, hints=None,

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from .question import BaseQuestion
+from question import BaseQuestion
 
 
 @dataclass

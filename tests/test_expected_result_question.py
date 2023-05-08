@@ -24,14 +24,14 @@ class TestExpectedResultQuestion:
 
     def test_answer_correctly(self):
         expected_result_question = ExpectedResultQuestion(
-            function_src=function_src, choices={'a': 6, 'b': 5},
+            function_src=function_src, choices=[6, 5],
             correct_answer=6, hints=[], tags=[]
         )
-        assert expected_result_question.answer('a')
+        assert expected_result_question.answer(6)
 
     def test_answer_incorrectly(self):
         expected_result_question = ExpectedResultQuestion(
-            function_src=function_src, choices={'a': 6, 'b': 5},
+            function_src=function_src, choices=[6, 5],
             correct_answer=6, hints=[], tags=[]
         )
-        assert expected_result_question.answer('b') is False
+        assert expected_result_question.answer(5) is False

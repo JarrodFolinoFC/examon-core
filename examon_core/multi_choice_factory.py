@@ -7,7 +7,7 @@ class MultiChoiceFactory:
 
     @classmethod
     def append_answer(cls, choice_list, answer):
-        if choice_list not in choice_list:
+        if answer not in choice_list:
             choice_list.append(answer)
         return choice_list
 
