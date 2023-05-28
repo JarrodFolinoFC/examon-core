@@ -25,6 +25,7 @@ class PrintLog:
     def reset(cls):
         cls.print_logs = []
 
+
 def print(*args, **kwargs):
     caller = getframeinfo(stack()[1][0])
     f = io.StringIO()

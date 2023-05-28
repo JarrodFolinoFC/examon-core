@@ -1,6 +1,6 @@
 from .question import ExpectedResultQuestion, InputParameterQuestion, BaseQuestion
 from .multi_choice_factory import MultiChoiceFactory
-from .fn_to_txt import function_raw_code
+from .function_raw_code import function_raw_code
 from .print_ext import PrintLog
 from .code_metrics import CodeMetricsFactory
 

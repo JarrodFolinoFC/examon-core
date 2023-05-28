@@ -12,7 +12,7 @@ class BaseQuestion:
     metrics: Any = None
 
     def answer(self, given_answer):
-        return self.correct_answer == given_answer
+        return str(self.correct_answer) == str(given_answer)
 
 
 @dataclass

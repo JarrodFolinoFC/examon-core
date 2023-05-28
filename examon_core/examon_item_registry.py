@@ -1,9 +1,13 @@
-class QuizItemRegistry:
+class ExamonItemRegistry:
     __registry = []
 
     @classmethod
     def add(cls, quiz_item):
         cls.__registry.append(quiz_item)
+
+    @classmethod
+    def reset(cls):
+        cls.__registry = []
 
     @classmethod
     def registry(cls, tag=None):

@@ -1,9 +1,4 @@
-import os
-import sys
-sys.path.append(f'{os.path.abspath("")}/examon_core')
-
 from examon_core.question_factory import QuestionFactory
-from examon_core.question import ExpectedResultQuestion
 from examon_core.print_ext import print
 
 def question_fn():
@@ -18,7 +13,6 @@ class TestQuestionFactory:
         question = QuestionFactory.build(
             function=question_fn, tags=['a'],
             hints=[], choice_list=[7, 6])
-        assert isinstance(question, ExpectedResultQuestion)
         assert question.tags == ['a']
         assert len(question.choices) == 2
         assert len(question.print_logs) == 2

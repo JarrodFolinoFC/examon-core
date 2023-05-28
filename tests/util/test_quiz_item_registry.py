@@ -1,8 +1,4 @@
-import os
-import sys
-sys.path.append(f'{os.path.abspath("")}/examon_core')
-
-from quiz_item_registry import QuizItemRegistry
+from examon_item_registry import ExamonItemRegistry
 from question import ExpectedResultQuestion
 
 function_src = """
@@ -13,12 +9,12 @@ def question(x):
 
 class TestQuizItemRegistry:
     def test_adds_question(self):
-        registry = QuizItemRegistry()
+        ExamonItemRegistry.reset()
         question = ExpectedResultQuestion(
             tags=[],
             hints=None,
             function_src='def hello:'
                          '  return 1',
             correct_answer='1')
-        registry.add(question)
-        assert len(registry.registry()) == 1
+        ExamonItemRegistry.add(question)
+        assert len(ExamonItemRegistry.registry()) == 1

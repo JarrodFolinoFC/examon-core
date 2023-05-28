@@ -1,7 +1,3 @@
-import os
-import sys
-sys.path.append(f'{os.path.abspath("")}/examon_core')
-
 from question import ExpectedResultQuestion
 
 function_src = """

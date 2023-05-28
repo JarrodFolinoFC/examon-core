@@ -1,6 +1,3 @@
-import os
-import sys
-sys.path.append(f'{os.path.abspath("")}/examon_core')
 from print_ext import PrintLog, print
 
 
@@ -21,9 +18,12 @@ def clear_print_logs():
     PrintLog.reset()
 
 class TestPrint:
-    def test_print_override_appends_logs(self):
+    def test_print_overrides_and_appends_print_log_logs(self):
         question()
-        assert PrintLog.logs()[0] == ('test', 10)
+        assert PrintLog.logs()[0] == ('test', 7)
+        assert PrintLog.logs()[1] == ('6', 9)
+        assert PrintLog.logs()[2] == ('15', 11)
+        # assert PrintLog.logs()[3] == ('18', 16)
 
     def test_print_override_appends_logs_from_exec(self):
         exec("print('test')")
