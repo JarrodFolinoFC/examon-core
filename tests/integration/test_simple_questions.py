@@ -10,7 +10,24 @@ def question_1():
 def question_2():
     return 2
 
+@examon_item(param1=[1, 2, 3], tags=['anything'])
+def question_3(x):
+    return x
+
+@examon_item(param1=[3, 7, 3], tags=['anything'])
+def question_3(y):
+    z = 9
+    for x in range(8):
+        z = z + 8
+    return y * 7
 
 class TestIntegrationSimpleQuestions:
-    def test__init__1(self):
-        assert len(ExamonItemRegistry.registry()) == 2
+    def test_count(self):
+        assert len(ExamonItemRegistry.registry()) == 4
+
+    def test_metrics(self):
+        assert ExamonItemRegistry.registry()[0].metrics.difficulty == 0
+        assert ExamonItemRegistry.registry()[0].metrics.no_of_functions == 0
+        assert ExamonItemRegistry.registry()[0].metrics.loc == 3
+        assert ExamonItemRegistry.registry()[0].metrics.lloc == 1
+        assert ExamonItemRegistry.registry()[3].metrics.sloc == 1

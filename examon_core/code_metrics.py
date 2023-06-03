@@ -11,6 +11,14 @@ class CodeMetrics:
         self.lloc = None
         self.sloc = None
 
+    def __repr__(self):
+        return f'CodeMetrics(difficulty: {self.difficulty},' \
+               f'difficulty: {self.difficulty}, ' \
+               f'no_of_functions: {self.no_of_functions}, ' \
+               f'loc: {self.loc}, ' \
+               f'lloc: {self.lloc}, ' \
+               f'lloc: {self.sloc})'
+
 
 class CodeMetricsFactory:
     @staticmethod
