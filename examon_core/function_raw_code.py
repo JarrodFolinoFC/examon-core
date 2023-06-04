@@ -32,7 +32,7 @@ class SourceCodeCommentsDecorator:
 
 class RemoveQuizItemDecorator:
     def decorate(self, src_code):
-        return re.sub('@quiz\\_item\\(.*\\)', '', src_code)
+        return re.sub('@examon\\_item\\(.*\\)', '', src_code)
 
 
 class AppendPrintDecorator:
@@ -48,5 +48,5 @@ def function_raw_code(function, hints):
     code_comments_decorator = SourceCodeCommentsDecorator(hints)
     append_print_decorator = AppendPrintDecorator(function.__name__)
     remove_quiz_item_decorator = RemoveQuizItemDecorator()
-    decorators = [remove_quiz_item_decorator, code_comments_decorator, append_print_decorator]
+    decorators = [remove_quiz_item_decorator, append_print_decorator]
     return RawCodeFactory.build(function, decorators)
