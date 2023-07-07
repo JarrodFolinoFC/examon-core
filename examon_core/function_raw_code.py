@@ -1,17 +1,22 @@
 import inspect
 import re
-
+import logging
 
 class RawCodeFactory:
     @staticmethod
     def build(function, decorators=[]):
         src_code = RawCodeFactory.function_src(function)
         for decorator in decorators:
+            logging.debug(f'RawCodeFactory.build: {decorator}')
             src_code = decorator.decorate(src_code)
+            logging.debug(f'RawCodeFactory.build: {src_code}')
+
+        logging.debug(f'RawCodeFactory.build: {src_code}')
         return src_code
 
     @staticmethod
     def function_src(function):
+        logging.debug(f'RawCodeFactory.function_src: {function}')
         return inspect.getsource(function).strip()
 
 

@@ -5,7 +5,7 @@ from .print_ext import PrintLog
 from .code_metrics import CodeMetricsFactory
 
 import random
-
+import logging
 
 class QuestionFactory:
     @staticmethod
@@ -58,6 +58,7 @@ class QuestionFactory:
         question.tags = tags
         question.print_logs = print_logs
         question.function_src = fn_string
+        logging.debug(f'QuestionFactory.build: {question}')
         return question
 
     @staticmethod

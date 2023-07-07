@@ -1,8 +1,11 @@
+import logging
+
 class ExamonItemRegistry:
     __registry = []
 
     @classmethod
     def add(cls, quiz_item):
+        logging.debug(f'Adding {quiz_item} to registry')
         cls.__registry.append(quiz_item)
 
     @classmethod

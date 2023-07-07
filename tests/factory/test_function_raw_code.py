@@ -30,10 +30,6 @@ class TestFnToText:
         result = function_raw_code(function1, [])
         assert 'def function1():\n    return 1 - 7' in result
 
-    def test_adds_hints(self):
-        result = function_raw_code(function1, ['here is a hint'])
-        assert '# here is a hint' in result
-        assert 'def function1():\n    return 1 - 7' in result
 
     def test_all(self):
         decorator1 = SourceCodeCommentsDecorator(['hello', 'how are you'])

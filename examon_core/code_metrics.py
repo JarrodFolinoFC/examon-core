@@ -1,3 +1,5 @@
+import logging
+
 from radon.raw import analyze
 from radon.metrics import h_visit
 
@@ -32,4 +34,6 @@ class CodeMetricsFactory:
         cm.loc = raw.loc
         cm.lloc = raw.lloc
         cm.sloc = raw.sloc
+        logging.debug(f'CodeMetricsFactory.build: {cm}')
+
         return cm

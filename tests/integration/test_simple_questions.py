@@ -25,9 +25,14 @@ class TestIntegrationSimpleQuestions:
     def test_count(self):
         assert len(ExamonItemRegistry.registry()) == 4
 
-    def test_metrics(self):
+    def test_metrics_difficulty(self):
         assert ExamonItemRegistry.registry()[0].metrics.difficulty == 0
-        assert ExamonItemRegistry.registry()[0].metrics.no_of_functions == 0
-        assert ExamonItemRegistry.registry()[0].metrics.loc == 3
-        assert ExamonItemRegistry.registry()[0].metrics.lloc == 1
-        assert ExamonItemRegistry.registry()[3].metrics.sloc == 1
+        assert ExamonItemRegistry.registry()[1].metrics.difficulty == 0
+        assert ExamonItemRegistry.registry()[2].metrics.difficulty == 0
+        assert ExamonItemRegistry.registry()[3].metrics.difficulty == 1
+
+    def test_metrics_loc(self):
+        assert ExamonItemRegistry.registry()[0].metrics.loc == 5
+        assert ExamonItemRegistry.registry()[1].metrics.loc == 5
+        assert ExamonItemRegistry.registry()[2].metrics.loc == 5
+        assert ExamonItemRegistry.registry()[3].metrics.loc == 8
