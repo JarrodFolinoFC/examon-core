@@ -23,7 +23,6 @@ class TestPrint:
         assert PrintLog.logs()[0] == ('test', 7)
         assert PrintLog.logs()[1] == ('6', 9)
         assert PrintLog.logs()[2] == ('15', 11)
-        # assert PrintLog.logs()[3] == ('18', 16)
 
     def test_print_override_appends_logs_from_exec(self):
         exec("print('test')")
