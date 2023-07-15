@@ -9,6 +9,7 @@ class PrintLogItem:
     output: str
     line_no: int
 
+
 class PrintLog:
     print_logs = []
 
@@ -22,9 +23,10 @@ class PrintLog:
 
     @classmethod
     def apply_offset(cls, offset):
-        cls.print_logs = list(
-            map(lambda x: (x[0], x[1] - offset), cls.print_logs)
-        )
+        def offset_pl(print_log_item):
+            return PrintLogItem(print_log_item.output, print_log_item.line_no - offset)
+
+        cls.print_logs = list(map(offset_pl, cls.print_logs))
 
     @classmethod
     def reset(cls):

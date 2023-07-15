@@ -27,3 +27,10 @@ class TestPrint:
     def test_print_override_appends_logs_from_exec(self):
         exec("print('test')")
         assert len(PrintLog.logs()) == 1
+
+    def test_print_logs_apply_offset(self):
+        question()
+        PrintLog.apply_offset(2)
+        assert PrintLog.logs()[0] == PrintLogItem('test', 5)
+        assert PrintLog.logs()[1] == PrintLogItem('6', 7)
+        assert PrintLog.logs()[2] == PrintLogItem('15', 9)

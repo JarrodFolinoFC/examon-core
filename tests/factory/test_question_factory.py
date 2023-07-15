@@ -1,5 +1,5 @@
 from examon_core.question_factory import QuestionFactory
-from examon_core.print_ext import print
+from examon_core.print_ext import print, PrintLogItem
 
 def question_fn():
     print('test')
@@ -21,7 +21,7 @@ class TestQuestionFactory:
         question = QuestionFactory.build(
             function=question_fn, tags=['a'],
             hints=[], choice_list=[7, 6])
-        assert question.print_logs[0] == ('test', 1)
+        assert question.print_logs[0] == PrintLogItem('test', 1)
 
     def test_choices(self):
         question = QuestionFactory.build(
