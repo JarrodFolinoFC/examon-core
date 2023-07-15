@@ -1,4 +1,4 @@
-from print_ext import PrintLog, print
+from print_ext import PrintLog, print, PrintLogItem
 
 
 import pytest
@@ -20,9 +20,9 @@ def clear_print_logs():
 class TestPrint:
     def test_print_overrides_and_appends_print_log_logs(self):
         question()
-        assert PrintLog.logs()[0] == ('test', 7)
-        assert PrintLog.logs()[1] == ('6', 9)
-        assert PrintLog.logs()[2] == ('15', 11)
+        assert PrintLog.logs()[0] == PrintLogItem('test', 7)
+        assert PrintLog.logs()[1] == PrintLogItem('6', 9)
+        assert PrintLog.logs()[2] == PrintLogItem('15', 11)
 
     def test_print_override_appends_logs_from_exec(self):
         exec("print('test')")

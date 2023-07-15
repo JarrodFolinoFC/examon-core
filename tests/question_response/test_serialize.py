@@ -6,6 +6,7 @@ from dataclasses_serialization.json import JSONSerializer
 
 function_src = """
 def question(x):
+    print(1)
     return x + 3
 """
 

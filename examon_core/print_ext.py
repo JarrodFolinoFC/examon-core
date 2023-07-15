@@ -1,8 +1,13 @@
+from dataclasses import dataclass
 import builtins
 from contextlib import redirect_stdout
 import io
 from inspect import getframeinfo, stack
 
+@dataclass
+class PrintLogItem:
+    output: str
+    line_no: int
 
 class PrintLog:
     print_logs = []
@@ -33,4 +38,4 @@ def print(*args, **kwargs):
     with redirect_stdout(f):
         builtins.print(*args, **kwargs)
     s = f.getvalue().rstrip()
-    PrintLog.append((s, caller.lineno))
+    PrintLog.append(PrintLogItem    (s, caller.lineno))

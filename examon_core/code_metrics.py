@@ -16,7 +16,6 @@ class CodeMetrics:
 
     def __repr__(self):
         return f'CodeMetrics(difficulty: {self.difficulty},' \
-               f'difficulty: {self.difficulty}, ' \
                f'no_of_functions: {self.no_of_functions}, ' \
                f'loc: {self.loc}, ' \
                f'lloc: {self.lloc}, ' \
