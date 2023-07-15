@@ -1,17 +1,18 @@
 import logging
+from dataclasses import dataclass
+
 
 from radon.raw import analyze
 from radon.metrics import h_visit
 
-
+@dataclass
 class CodeMetrics:
-    def __init__(self, code_as_string):
-        self.code_as_string = code_as_string
-        self.difficulty = None
-        self.no_of_functions = None
-        self.loc = None
-        self.lloc = None
-        self.sloc = None
+    code_as_string: str
+    no_of_functions: int = None
+    loc: int = None
+    lloc: int = None
+    sloc: int = None
+    difficulty: float = None
 
     def __repr__(self):
         return f'CodeMetrics(difficulty: {self.difficulty},' \
