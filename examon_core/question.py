@@ -20,7 +20,6 @@ class ExpectedResultQuestion(BaseQuestion):
     correct_answer: str = None
 
 
-
 @dataclass
 class InputParameterQuestion(BaseQuestion):
     return_value: str = None

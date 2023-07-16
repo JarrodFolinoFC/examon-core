@@ -7,6 +7,7 @@ from .code_metrics import CodeMetricsFactory
 import random
 import logging
 
+
 class QuestionFactory:
     @staticmethod
     def build(**kwargs):
@@ -47,8 +48,10 @@ class QuestionFactory:
 
             if choice_list is not None:
                 question = ExpectedResultQuestion(
-                    choices=(MultiChoiceFactory.build(correct_answer, choice_list))
-                )
+                    choices=(
+                        MultiChoiceFactory.build(
+                            correct_answer,
+                            choice_list)))
             else:
                 question = BaseQuestion()
             question.correct_answer = correct_answer

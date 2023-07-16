@@ -1,5 +1,6 @@
 import logging
 
+
 class ExamonItemRegistry:
     __registry = []
 

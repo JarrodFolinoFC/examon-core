@@ -2,6 +2,7 @@ import inspect
 import re
 import logging
 
+
 class RawCodeFactory:
     @staticmethod
     def build(function, decorators=[]):
@@ -50,7 +51,6 @@ class AppendPrintDecorator:
 
 
 def function_raw_code(function, hints):
-    code_comments_decorator = SourceCodeCommentsDecorator(hints)
     append_print_decorator = AppendPrintDecorator(function.__name__)
     remove_quiz_item_decorator = RemoveQuizItemDecorator()
     decorators = [remove_quiz_item_decorator, append_print_decorator]

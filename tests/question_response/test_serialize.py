@@ -15,9 +15,14 @@ choices = [3, 5]
 
 class TestInputParameterQuestion:
     def test_to_json(self):
-        question = InputParameterQuestion(function_src=function_src,
-                                          return_value=6, choices=choices, hints=[], tags=[],
-                                          selected_param=3, metrics=CodeMetricsFactory.build(function_src))
+        question = InputParameterQuestion(
+            function_src=function_src,
+            return_value=6,
+            choices=choices,
+            hints=[],
+            tags=[],
+            selected_param=3,
+            metrics=CodeMetricsFactory.build(function_src))
         question_response = QuestionResponse(question, 2, True)
 
         serialized = JSONSerializer.serialize(question_response)

@@ -3,6 +3,7 @@ from print_ext import PrintLog, print, PrintLogItem
 
 import pytest
 
+
 def question():
     print('test')
     a = 6
@@ -13,9 +14,11 @@ def question():
     print(result)
     return result
 
+
 @pytest.fixture(scope="function", autouse=True)
 def clear_print_logs():
     PrintLog.reset()
+
 
 class TestPrint:
     def test_print_overrides_and_appends_print_log_logs(self):

@@ -6,20 +6,24 @@ from examon_core.examon_item_registry import ExamonItemRegistry
 def question_1():
     return 1
 
+
 @examon_item(tags=['anything'])
 def question_2():
     return 2
+
 
 @examon_item(param1=[1, 2, 3], tags=['anything'])
 def question_3(x):
     return x
 
+
 @examon_item(param1=[3, 7, 3], tags=['anything'])
-def question_3(y):
+def question_4(y):
     z = 9
     for x in range(8):
         z = z + 8
     return y * 7
+
 
 class TestIntegrationSimpleQuestions:
     def test_count(self):

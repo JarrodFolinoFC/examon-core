@@ -30,12 +30,12 @@ class TestFnToText:
         result = function_raw_code(function1, [])
         assert 'def function1():\n    return 1 - 7' in result
 
-
     def test_all(self):
         decorator1 = SourceCodeCommentsDecorator(['hello', 'how are you'])
         decorator2 = AppendPrintDecorator(function1.__name__)
         decorator3 = RemoveQuizItemDecorator()
-        result = RawCodeFactory.build(function1, [decorator1, decorator2, decorator3])
+        result = RawCodeFactory.build(
+            function1, [decorator1, decorator2, decorator3])
         assert '# hello' in result
         assert '# how are you' in result
         assert '@examon' not in result

@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from radon.raw import analyze
 from radon.metrics import h_visit
 
+
 @dataclass
 class CodeMetrics:
     code_as_string: str

@@ -1,8 +1,8 @@
+from examon_core.code_metrics import CodeMetricsFactory
 import os
 import sys
 sys.path.append(f'{os.path.abspath("")}/examon_core')
 
-from examon_core.code_metrics import CodeMetricsFactory
 
 code = '''
 def function1():
@@ -23,7 +23,7 @@ def function1():
 
     return function3(104) - function2()
 
-print(function1())    
+print(function1())
 '''
 
 

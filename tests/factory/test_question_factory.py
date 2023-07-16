@@ -1,6 +1,7 @@
 from examon_core.question_factory import QuestionFactory
 from examon_core.print_ext import print, PrintLogItem
 
+
 def question_fn():
     print('test')
     answer = 4 + 3

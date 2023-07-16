@@ -4,6 +4,7 @@ from contextlib import redirect_stdout
 import io
 from inspect import getframeinfo, stack
 
+
 @dataclass
 class PrintLogItem:
     output: str
@@ -24,7 +25,9 @@ class PrintLog:
     @classmethod
     def apply_offset(cls, offset):
         def offset_pl(print_log_item):
-            return PrintLogItem(print_log_item.output, print_log_item.line_no - offset)
+            return PrintLogItem(
+                print_log_item.output,
+                print_log_item.line_no - offset)
 
         cls.print_logs = list(map(offset_pl, cls.print_logs))
 
@@ -40,4 +43,4 @@ def print(*args, **kwargs):
     with redirect_stdout(f):
         builtins.print(*args, **kwargs)
     s = f.getvalue().rstrip()
-    PrintLog.append(PrintLogItem    (s, caller.lineno))
+    PrintLog.append(PrintLogItem(s, caller.lineno))

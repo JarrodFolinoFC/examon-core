@@ -4,7 +4,7 @@ from .question_factory import QuestionFactory
 
 
 def examon_item(choices=None, tags=None, hints=None,
-              generated_choices=None, param1=None):
+                generated_choices=None, param1=None):
     def inner_function(function):
         processed_question = QuestionFactory.build(
             function=function, choice_list=choices,
