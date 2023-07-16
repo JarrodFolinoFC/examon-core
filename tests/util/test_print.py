@@ -23,9 +23,9 @@ def clear_print_logs():
 class TestPrint:
     def test_print_overrides_and_appends_print_log_logs(self):
         question()
-        assert PrintLog.logs()[0] == PrintLogItem('test', 7)
-        assert PrintLog.logs()[1] == PrintLogItem('6', 9)
-        assert PrintLog.logs()[2] == PrintLogItem('15', 11)
+        assert PrintLog.logs()[0] == PrintLogItem('test', 8)
+        assert PrintLog.logs()[1] == PrintLogItem('6', 10)
+        assert PrintLog.logs()[2] == PrintLogItem('15', 12)
 
     def test_print_override_appends_logs_from_exec(self):
         exec("print('test')")
@@ -34,6 +34,6 @@ class TestPrint:
     def test_print_logs_apply_offset(self):
         question()
         PrintLog.apply_offset(2)
-        assert PrintLog.logs()[0] == PrintLogItem('test', 5)
-        assert PrintLog.logs()[1] == PrintLogItem('6', 7)
-        assert PrintLog.logs()[2] == PrintLogItem('15', 9)
+        assert PrintLog.logs()[0] == PrintLogItem('test', 6)
+        assert PrintLog.logs()[1] == PrintLogItem('6', 8)
+        assert PrintLog.logs()[2] == PrintLogItem('15', 10)
