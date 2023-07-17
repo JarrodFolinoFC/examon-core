@@ -1,4 +1,3 @@
-from functools import wraps
 from .examon_item_registry import ExamonItemRegistry
 from .question_factory import QuestionFactory
 
@@ -12,10 +11,6 @@ def examon_item(choices=None, tags=None, hints=None,
             generated_choices=generated_choices,
             param1=param1, metrics=True)
         ExamonItemRegistry.add(processed_question)
-
-        @wraps(function)
-        def wrapper(*args, **kwargs):
-            function(*args, **kwargs)
-            return wrapper
+        return function
 
     return inner_function

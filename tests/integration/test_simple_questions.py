@@ -26,6 +26,9 @@ def question_4(y):
 
 
 class TestIntegrationSimpleQuestions:
+    def test_questions_callable(self):
+        assert question_1() == 1
+
     def test_count(self):
         assert len(ExamonItemRegistry.registry()) == 4
 
