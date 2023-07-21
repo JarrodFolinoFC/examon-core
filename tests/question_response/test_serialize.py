@@ -10,7 +10,7 @@ def question(x):
     return x + 3
 """
 
-choices = [3, 5]
+choices = [3, 5, [3, 5]]
 
 
 class TestInputParameterQuestion:
