@@ -8,10 +8,6 @@ import random
 import logging
 
 
-class InvalidChoiceException(Exception):
-    pass
-
-
 class QuestionFactory:
     @staticmethod
     def build(**kwargs):
@@ -22,9 +18,6 @@ class QuestionFactory:
         choice_list = kwargs['choice_list']
         fn_string = function_raw_code(function, hints)
         first_line_no = function.__code__.co_firstlineno
-
-        if choice_list is not None and any(type(choice) is tuple for choice in choice_list):
-            raise InvalidChoiceException('Cannot use a <tuple> as a choice')
 
         # Code Metrics
         metrics = CodeMetricsFactory.build(fn_string)

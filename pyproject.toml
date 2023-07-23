@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "examon_core"
-version = "1.0.8"
+version = "1.0.9"
 description = "Examon Core Libs"
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
 packages = [{include = "examon_core"}]
