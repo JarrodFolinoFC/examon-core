@@ -1,10 +1,13 @@
 from examon_core.question_factory import QuestionFactory
-from examon_core.print_ext import print, PrintLogItem
-
-import pytest
-
+from dataclasses_serialization.json import JSONSerializer
 
 def question_fn():
+    print('test')
+    answer = 4 + 3
+    print(answer)
+    return answer
+
+def question_fn_tuple_answer():
     print('test')
     answer = 4 + 3
     print(answer)
@@ -15,23 +18,11 @@ class TestQuestionFactory:
     def test_build(self):
         question = QuestionFactory.build(
             function=question_fn, tags=['a'],
-            hints=[], choice_list=[7, 6])
+            hints=[], choice_list=['7', '6'])
         assert question.tags == ['a']
         assert len(question.choices) == 2
-        assert len(question.print_logs) == 2
+        assert question.print_logs == ['test', '7', '7']
 
-    def test_build_with_tuple_choices(self):
-        QuestionFactory.build(function=question_fn, tags=[], choice_list=[(7, 6)])
-
-
-    def test_print_logs(self):
-        question = QuestionFactory.build(
-            function=question_fn, tags=['a'],
-            hints=[], choice_list=[7, 6])
-        assert question.print_logs[0] == PrintLogItem('test', 1)
-
-    def test_choices(self):
-        question = QuestionFactory.build(
-            function=question_fn, tags=['a'],
-            hints=[], choice_list=[7, 6])
-        assert question.choices == [7, 6]
+    def test_can_serialize(self):
+        question = QuestionFactory.build(function=question_fn_tuple_answer, tags=[], choice_list=[(7, (1,2,4), 6)])
+        JSONSerializer.serialize(question)

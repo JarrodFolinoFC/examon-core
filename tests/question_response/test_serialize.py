@@ -4,10 +4,11 @@ from examon_core.code_metrics import CodeMetricsFactory
 
 from dataclasses_serialization.json import JSONSerializer
 
+
 function_src = """
 def question(x):
     print(1)
-    return x + 3
+    return (x + 3, 9)
 """
 
 choices = [3, 5, [3, 5]]

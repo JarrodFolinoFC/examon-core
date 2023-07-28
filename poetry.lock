@@ -259,6 +259,22 @@ mando = ">=0.6,<0.8"
 toml = ["tomli (>=2.0.1)"]
 
 [[package]]
+name = "restrictedpython"
+version = "6.1"
+description = "RestrictedPython is a defined subset of the Python language which allows to provide a program input into a trusted environment."
+category = "main"
+optional = false
+python-versions = ">=3.6, <3.12"
+files = [
+    {file = "RestrictedPython-6.1-py3-none-any.whl", hash = "sha256:0b2f1e54730ee29ac87a5dc684159bf163806038b02aa8561aaea840a8256a9f"},
+    {file = "RestrictedPython-6.1.tar.gz", hash = "sha256:7e58ea15cc92a0b916e0c8ca295e8b2c6d40fee4d12e1a2b5063d86efc279a9c"},
+]
+
+[package.extras]
+docs = ["Sphinx", "sphinx-rtd-theme"]
+test = ["pytest", "pytest-mock"]
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -336,5 +352,5 @@ typing-extensions = ">=3.7.4"
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.9"
-content-hash = "045ed54ff8d13604e13c1b7bce274311e6b13ebbd5ad12b1172ec7fbeabe8712"
+python-versions = ">=3.9,<3.12"
+content-hash = "85543a5e19e7b650dff35182bec98eaeab9bf410ba247af31a788bc5841b165c"

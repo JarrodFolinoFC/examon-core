@@ -42,16 +42,17 @@ class RemoveQuizItemDecorator:
 
 
 class AppendPrintDecorator:
-    def __init__(self, function_name):
+    def __init__(self, function_name, param=''):
         self.function_name = function_name
+        self.param = param
 
     def decorate(self, src_code):
-        println = f'\n\nprint({self.function_name}())'
+        println = f'\n\nprint({self.function_name}({self.param}))'
         return src_code + println
 
 
-def function_raw_code(function, hints):
-    append_print_decorator = AppendPrintDecorator(function.__name__)
+def function_raw_code(function, param=''):
+    append_print_decorator = AppendPrintDecorator(function.__name__, param)
     remove_quiz_item_decorator = RemoveQuizItemDecorator()
     decorators = [remove_quiz_item_decorator, append_print_decorator]
     return RawCodeFactory.build(function, decorators)

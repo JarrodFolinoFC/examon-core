@@ -36,3 +36,4 @@ class TestFnToText:
         assert code_metrics.loc == 20
         assert code_metrics.lloc == 14
         assert code_metrics.sloc == 14
+        assert code_metrics.calc_difficulty() == 'Hard'

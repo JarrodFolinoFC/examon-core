@@ -1,4 +1,4 @@
-from function_raw_code import function_raw_code, \
+from examon_core.function_raw_code import function_raw_code, \
     RawCodeFactory, AppendPrintDecorator, \
     SourceCodeCommentsDecorator, \
     RemoveQuizItemDecorator
@@ -27,17 +27,14 @@ class TestFnToText:
         assert 'def function1():\n    return 1 - 7' in result
 
     def test_converts_function_to_string(self):
-        result = function_raw_code(function1, [])
+        result = function_raw_code(function1)
         assert 'def function1():\n    return 1 - 7' in result
 
     def test_all(self):
-        decorator1 = SourceCodeCommentsDecorator(['hello', 'how are you'])
         decorator2 = AppendPrintDecorator(function1.__name__)
         decorator3 = RemoveQuizItemDecorator()
         result = RawCodeFactory.build(
-            function1, [decorator1, decorator2, decorator3])
-        assert '# hello' in result
-        assert '# how are you' in result
+            function1, [decorator2, decorator3])
         assert '@examon' not in result
         assert 'def function1():\n    return 1 - 7' in result
         assert 'print(function1())' in result

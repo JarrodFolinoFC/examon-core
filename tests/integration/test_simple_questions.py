@@ -20,9 +20,8 @@ def question_3(x):
 @examon_item(param1=[3, 7, 3], tags=['anything'])
 def question_4(y):
     z = 9
-    for x in range(8):
-        z = z + 8
-    return y * 7
+    x = 8
+    return y * 7 - 8
 
 
 class TestIntegrationSimpleQuestions:
@@ -42,4 +41,4 @@ class TestIntegrationSimpleQuestions:
         assert ExamonItemRegistry.registry()[0].metrics.loc == 5
         assert ExamonItemRegistry.registry()[1].metrics.loc == 5
         assert ExamonItemRegistry.registry()[2].metrics.loc == 5
-        assert ExamonItemRegistry.registry()[3].metrics.loc == 8
+        assert ExamonItemRegistry.registry()[3].metrics.loc == 7

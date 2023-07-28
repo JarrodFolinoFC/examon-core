@@ -22,6 +22,17 @@ class CodeMetrics:
                f'lloc: {self.lloc}, ' \
                f'lloc: {self.sloc})'
 
+    def calc_difficulty(self):
+        value = self.difficulty
+        if value == 0:
+            return "Easy"
+        elif 0 < value <= 1:
+            return "Medium"
+        elif 1 < value < 3:
+            return "Hard"
+        elif value >= 3:
+            return 'Very Hard'
+
 
 class CodeMetricsFactory:
     @staticmethod
