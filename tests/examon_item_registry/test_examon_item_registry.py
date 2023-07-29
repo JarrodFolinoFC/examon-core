@@ -15,7 +15,7 @@ def add_question(tags):
     ExamonItemRegistry.add(question)
 
 
-class TestQuizItemRegistry:
+class TestExamonItemRegistry:
     def test_adds_question(self):
         ExamonItemRegistry.reset()
         add_question([])

@@ -1,3 +1,4 @@
+import pytest
 from examon_core.code_execution_sandbox import CodeExecutionSandbox
 
 
@@ -16,6 +17,22 @@ print(f1())
 
         assert ces.print_logs == ['hello', 'hello2', '3']
 
+    @pytest.mark.skip(reason="pending")
+    def test_complex_code(self):
+            source_code = """
+def f1():
+    x = 0
+    for a in [1,2,3,4,5]:
+        x = x + a
+        print(x)
+    return x
+print(f1())
+    """
+
+            ces = CodeExecutionSandbox(source_code)
+            ces.execute()
+
+            assert ces.print_logs == ['hello', 'hello2', '3']
     def test_print_logs_with_params(self):
         source_code = """
 def f2(x):
