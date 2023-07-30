@@ -16,7 +16,7 @@ class BaseQuestion:
 
 
 @dataclass
-class ExpectedResultQuestion(BaseQuestion):
+class MultiChoiceQuestion(BaseQuestion):
     correct_answer: str = None
 
 

@@ -1,5 +1,5 @@
-import pytest
-from examon_core.code_metrics import CodeMetricsFactory
+from examon_core.code_metrics import CodeMetricsFactory,\
+    CalcDifficultyDefaultStrategy
 import os
 import sys
 sys.path.append(f'{os.path.abspath("")}/examon_core')
@@ -7,8 +7,6 @@ sys.path.append(f'{os.path.abspath("")}/examon_core')
 
 code = '''
 def function1():
-
-
     def function2():
         return 44
 
@@ -28,17 +26,8 @@ print(function1())
 '''
 
 
-class TestCodeMetricsFactory:
+class TestCalcDifficultyDefaultStrategy:
     def test_converts_function_to_string(self):
         code_metrics = CodeMetricsFactory.build(code)
 
-        assert code_metrics.difficulty == 1.67
-        assert code_metrics.no_of_functions == 1
-        assert code_metrics.loc == 20
-        assert code_metrics.lloc == 14
-        assert code_metrics.sloc == 14
-        assert code_metrics.categorised_difficulty == 'Hard'
-
-    def test_converts_function_to_string_empty_code(self):
-        with pytest.raises(Exception):
-            CodeMetricsFactory.build('')
+        assert CalcDifficultyDefaultStrategy(code_metrics).calc_difficulty() == 'Hard'

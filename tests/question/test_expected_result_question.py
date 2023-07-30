@@ -1,4 +1,4 @@
-from question import ExpectedResultQuestion
+from question import MultiChoiceQuestion
 
 function_src = """
 def question():
@@ -10,7 +10,7 @@ class TestExpectedResultQuestion:
     def test__init__1(self):
         choices = {'a': 6, 'b': 5}
         correct_answer = 6
-        expected_result_question = ExpectedResultQuestion(
+        expected_result_question = MultiChoiceQuestion(
             function_src=function_src, choices=choices,
             correct_answer=correct_answer, hints=[], tags=[]
         )
@@ -19,14 +19,14 @@ class TestExpectedResultQuestion:
         assert expected_result_question.correct_answer is correct_answer
 
     def test_answer_correctly(self):
-        expected_result_question = ExpectedResultQuestion(
+        expected_result_question = MultiChoiceQuestion(
             function_src=function_src, choices=[6, 5],
             correct_answer=6, hints=[], tags=[]
         )
         assert expected_result_question.answer(6)
 
     def test_answer_incorrectly(self):
-        expected_result_question = ExpectedResultQuestion(
+        expected_result_question = MultiChoiceQuestion(
             function_src=function_src, choices=[6, 5],
             correct_answer=6, hints=[], tags=[]
         )

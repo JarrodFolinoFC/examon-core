@@ -1,6 +1,6 @@
-from .question import ExpectedResultQuestion, InputParameterQuestion, BaseQuestion
+from .question import MultiChoiceQuestion, InputParameterQuestion, BaseQuestion
 from .multi_choice_factory import MultiChoiceFactory
-from .function_raw_code import function_raw_code
+from .code_as_string_factory import default_code_as_string_factory
 from .code_metrics import CodeMetricsFactory
 from .code_execution_sandbox import CodeExecutionSandbox
 import random
@@ -37,11 +37,11 @@ class QuestionFactory:
 
     @staticmethod
     def method_name1(choice_list, function):
-        function_src = function_raw_code(function)
+        function_src = default_code_as_string_factory(function)
         metrics = CodeMetricsFactory.build(function_src)
         print_logs = QuestionFactory.run_function(function_src)
         if choice_list is not None:
-            question = ExpectedResultQuestion(
+            question = MultiChoiceQuestion(
                 correct_answer=print_logs[-1],
                 choices=(
                     MultiChoiceFactory.build(
@@ -57,7 +57,7 @@ class QuestionFactory:
     @staticmethod
     def build_input_param_question(function, param1):
         selected_input_param = random.choice(param1)
-        function_src = function_raw_code(function, selected_input_param)
+        function_src = default_code_as_string_factory(function, selected_input_param)
         print_logs = QuestionFactory.run_function(function_src)
         metrics = CodeMetricsFactory.build(function_src)
         return_value = print_logs[-1]

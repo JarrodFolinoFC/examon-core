@@ -13,7 +13,6 @@ class TestQuestionFactoryInputParam:
             hints=[], param1=[4])
         assert question.print_logs == ['8']
 
-    @pytest.mark.skip(reason="pending")
     def test_build_with_str_param(self):
         def question_fn_with_str_param(a):
             return f'Hello {a}'
