@@ -17,27 +17,14 @@ def question_fn_tuple_answer():
     return answer
 
 
-def question_fn_with_param(a):
-    answer = 4 + a
-    return answer
-
-
 class TestQuestionFactoryExpectedResult:
     def test_build(self):
         question = QuestionFactory.build(
             function=question_fn, tags=['a'],
-            hints=[], param1=[4])
-        assert question.print_logs == ['8']
-
-    @pytest.mark.skip(reason="pending")
-    def test_build(self):
-        question = QuestionFactory.build(
-            function=question_fn_with_param, tags=[],
-            hints=[], choice_list=['7', '6'])
-        assert question.tags == ['a']
-        assert len(question.choices) == 2
+            hints=[])
         assert question.print_logs == ['test', '7', '7']
 
     def test_can_serialize(self):
-        question = QuestionFactory.build(function=question_fn_tuple_answer, tags=[], choice_list=[(7, (1, 2, 4), 6)])
+        question = QuestionFactory.build(function=question_fn_tuple_answer,
+                                         tags=[], choice_list=[(7, (1, 2, 4), 6)])
         JSONSerializer.serialize(question)

@@ -43,6 +43,7 @@ class QuestionFactory:
         if choice_list is not None:
             question = MultiChoiceQuestion(
                 correct_answer=print_logs[-1],
+                print_logs=print_logs,
                 choices=(
                     MultiChoiceFactory.build(
                         print_logs[-1],
@@ -51,7 +52,9 @@ class QuestionFactory:
                 )
             )
         else:
-            question = BaseQuestion(function_src=function_src, print_logs=print_logs)
+            question = BaseQuestion(function_src=function_src,
+                                    print_logs=print_logs,
+                                    correct_answer=print_logs[-1])
         return function_src, metrics, question
 
     @staticmethod
