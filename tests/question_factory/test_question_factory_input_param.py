@@ -22,6 +22,24 @@ class TestQuestionFactoryInputParam:
             hints=[], param1=['Bob'])
         assert question.print_logs == ['Hello Bob']
 
+    def test_build_with_str_param_and_quotes(self):
+        def question_fn_with_str_param(a):
+            return f'Hello {a}'
+
+        question = QuestionFactory.build(
+            function=question_fn_with_str_param, tags=[],
+            hints=[], param1=['"Bob"'])
+        assert question.print_logs == ['Hello "Bob"']
+
+    def test_build_with_str_param_and_escape_characters(self):
+        def question_fn_with_str_param(a):
+            return f'Hello {a}'
+
+        question = QuestionFactory.build(
+            function=question_fn_with_str_param, tags=[],
+            hints=[], param1=['\tBob'])
+        assert question.print_logs == ['Hello \tBob']
+
     def test_build_with_dict_param(self):
         def question_fn_with_str_param(a):
             return list(a.keys())

@@ -1,20 +1,15 @@
 [tool.poetry]
 name = "examon_core"
-version = "1.0.11"
+version = "1.1.3"
 description = "Examon Core Libs"
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
 packages = [{include = "examon_core"}]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.12"
+python = ">=3.9"
 radon = "^6.0.1"
 dataclasses-serialization = "^1.3.1"
-restrictedpython = "^6.1"
-
-[[tool.poetry.source]]
-name = "test"
-url = "https://test.pypi.org/simple/"
-secondary = true
+restrictedpython = {version="^6.1", python=">3.9"}
 
 [tool.poetry.dev-dependencies]
 pytest = "7.2.1"

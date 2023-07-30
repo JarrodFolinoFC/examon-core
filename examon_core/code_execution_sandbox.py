@@ -1,5 +1,6 @@
 from RestrictedPython import compile_restricted
-
+from RestrictedPython.Eval import default_guarded_getiter
+from RestrictedPython.Guards import safe_builtins
 
 class PrintCollector:
     output = []
@@ -34,7 +35,13 @@ class CodeExecutionSandbox:
     def execute(self):
         _print_ = PrintCollector
 
-        loc = {'_print_': PrintCollector, '_getattr_': getattr}
+        safe_globals = {
+            '_print_': PrintCollector,
+            '_getattr_': getattr,
+            '_getiter_': default_guarded_getiter
+        }
+
+        loc = safe_globals
 
         compiled_code = compile_restricted(self.source_code, '<string>', 'exec')
         exec(compiled_code, loc)

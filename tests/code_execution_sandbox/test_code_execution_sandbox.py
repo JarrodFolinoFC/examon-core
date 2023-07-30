@@ -17,22 +17,23 @@ print(f1())
 
         assert ces.print_logs == ['hello', 'hello2', '3']
 
-    @pytest.mark.skip(reason="pending")
     def test_complex_code(self):
-            source_code = """
+        source_code = """
 def f1():
     x = 0
-    for a in [1,2,3,4,5]:
+    for a in [1, 2, 3]:
         x = x + a
         print(x)
     return x
 print(f1())
     """
 
-            ces = CodeExecutionSandbox(source_code)
-            ces.execute()
+        ces = CodeExecutionSandbox(source_code)
+        ces.execute()
+        print(ces.print_logs)
 
-            assert ces.print_logs == ['hello', 'hello2', '3']
+        assert ces.print_logs == ['1', '3', '6', '6']
+
     def test_print_logs_with_params(self):
         source_code = """
 def f2(x):
@@ -49,17 +50,16 @@ print(f2(4))
 
         assert ces.print_logs == ['5', '39']
 
+    def test_unknown_error(self):
+        source_code = """
+def f2():
+    y = 5
+    z = 9
+    for x in range(8):
+        z = z + 8
+    return y * 7
 
-#     def test_unknown_error(self):
-#         source_code = """
-# def f2():
-#     y = 5
-#     z = 9
-#     for x in range(8):
-#         z = z + 8
-#     return y * 7
-#
-# print(f2())
-# """
-#         ces = CodeExecutionSandbox(source_code)
-#         ces.execute()
+print(f2())
+"""
+        ces = CodeExecutionSandbox(source_code)
+        ces.execute()

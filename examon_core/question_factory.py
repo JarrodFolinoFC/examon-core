@@ -79,13 +79,3 @@ class QuestionFactory:
         ces.execute()
 
         return ces.print_logs
-
-    @staticmethod
-    def run_function_with_param(function, param):
-        try:
-            answer = str(function(param))
-            if answer == '':
-                raise InvalidAnswerException('Answer cannot be an empty String')
-            return answer
-        except Exception as e:
-            return repr(e)

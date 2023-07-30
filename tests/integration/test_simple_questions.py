@@ -38,7 +38,7 @@ class TestIntegrationSimpleQuestions:
         assert ExamonItemRegistry.registry()[3].metrics.difficulty == 1
 
     def test_metrics_loc(self):
-        assert ExamonItemRegistry.registry()[0].metrics.loc == 5
-        assert ExamonItemRegistry.registry()[1].metrics.loc == 5
-        assert ExamonItemRegistry.registry()[2].metrics.loc == 5
-        assert ExamonItemRegistry.registry()[3].metrics.loc == 7
+        assert ExamonItemRegistry.registry()[0].metrics.loc == 4
+        assert ExamonItemRegistry.registry()[1].metrics.loc == 4
+        assert ExamonItemRegistry.registry()[2].metrics.loc == 4
+        assert ExamonItemRegistry.registry()[3].metrics.loc == 6

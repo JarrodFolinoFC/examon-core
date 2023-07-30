@@ -4,11 +4,47 @@ from examon_core.code_as_string_factory import default_code_as_string_factory, \
     RemoveQuizItemDecorator
 
 
+def examon_item(choices=None, tags=None, hints=None,
+                generated_choices=None, param1=None):
+    def inner_function(function):
+        return function
+    return inner_function
+
+
 def function1():
     return 1 - 7
 
 
+@examon_item(choices=['Hello, Bob. How are you?'], tags=['strings', 'beginner'])
+def question_with_decorator():
+    name = 'Jeff'
+    name = 'Bob'
+    greeting = f'Hello, {name}'
+    greeting += ". How are you?"
+    return greeting
+
+@examon_item(
+    choices=['Hello, Bob. How are you?'],
+    tags=['strings', 'beginner']
+)
+def question_with_decorator_mutliline():
+    name = 'Jeff'
+    name = 'Bob'
+    greeting = f'Hello, {name}'
+    greeting += ". How are you?"
+    return greeting
+
 class TestCodeAsStringFactory:
+    def test_default_code_with_decorator_one_line(self):
+        result = default_code_as_string_factory(question_with_decorator)
+        print(result)
+        assert '@examon_item' not in result
+
+    def test_default_code_with_decorator_multi_line(self):
+        result = default_code_as_string_factory(question_with_decorator_mutliline)
+        print(result)
+        assert '@examon_item' not in result
+
     def test_default_code_as_string_factory(self):
         result = default_code_as_string_factory(function1)
         assert 'def function1():\n    return 1 - 7' in result

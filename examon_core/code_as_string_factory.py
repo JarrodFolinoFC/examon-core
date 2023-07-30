@@ -1,5 +1,4 @@
 import inspect
-import re
 import logging
 
 
@@ -38,7 +37,7 @@ class SourceCodeCommentsDecorator:
 
 class RemoveQuizItemDecorator:
     def decorate(self, src_code):
-        return re.sub('@examon\\_item\\(.*\\)', '', src_code)
+        return src_code[src_code.find('def'):]
 
 
 class AppendPrintDecorator:
