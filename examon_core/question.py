@@ -4,6 +4,7 @@ from typing import Any
 
 @dataclass
 class BaseQuestion:
+    unique_id: str = None
     choices: dict = None
     function_src: str = None
     tags: list = None
