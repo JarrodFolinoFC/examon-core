@@ -1,5 +1,4 @@
-import pytest
-from examon_core.question_factory import QuestionFactory
+from examon_core.models.question_factory import QuestionFactory
 
 
 class TestQuestionFactoryInputParam:

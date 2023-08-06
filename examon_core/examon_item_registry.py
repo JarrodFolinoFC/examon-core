@@ -26,6 +26,7 @@ class ExamonItemRegistry:
     def reset(cls):
         cls.__registry = []
         cls.__filter = None
+        cls.__tags = []
 
     @classmethod
     def registry(cls, examon_filter=None):

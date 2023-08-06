@@ -1,5 +1,5 @@
 from .examon_item_registry import ExamonItemRegistry
-from .question_factory import QuestionFactory
+from .models.question_factory import QuestionFactory
 
 
 def examon_item(internal_id=None, choices=None,

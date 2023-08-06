@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from examon_core.question import BaseQuestion
+from .question import BaseQuestion
 
 
 @dataclass

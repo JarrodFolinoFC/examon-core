@@ -1,4 +1,4 @@
-from question import InputParameterQuestion
+from examon_core.models.question import InputParameterQuestion
 
 function_src = """
 def question(x):

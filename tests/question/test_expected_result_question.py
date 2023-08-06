@@ -1,4 +1,4 @@
-from question import MultiChoiceQuestion
+from examon_core.models.question import MultiChoiceQuestion
 
 function_src = """
 def question():

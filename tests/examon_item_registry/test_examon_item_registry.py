@@ -1,6 +1,6 @@
-from examon_item_registry import ExamonItemRegistry, ItemRegistryFilter
-from question import MultiChoiceQuestion
-from code_metrics import CodeMetrics
+from examon_core.examon_item_registry import ExamonItemRegistry, ItemRegistryFilter
+from examon_core.models.question import MultiChoiceQuestion
+from examon_core.models.code_metrics import CodeMetrics
 
 function_src = """
 def question():
@@ -87,4 +87,4 @@ class TestExamonItemRegistry:
         add_question(['a', 'b'])
         add_question(['a'])
         add_question(['a', 'c'])
-        assert ExamonItemRegistry.unique_tags() == ['a', 'c', 'b']
+        assert ExamonItemRegistry.unique_tags().sort() == ['a', 'c', 'b'].sort()

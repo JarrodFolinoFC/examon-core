@@ -1,4 +1,4 @@
-from examon_core.code_metrics import CodeMetricsFactory,\
+from examon_core.models.code_metrics import CodeMetricsFactory,\
     CalcDifficultyDefaultStrategy
 import os
 import sys

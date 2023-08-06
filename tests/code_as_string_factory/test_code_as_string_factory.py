@@ -1,4 +1,4 @@
-from examon_core.code_as_string_factory import default_code_as_string_factory, \
+from examon_core.models.code_as_string_factory import default_code_as_string_factory, \
     CodeAsStringFactory, AppendPrintDecorator, \
     SourceCodeCommentsDecorator, \
     RemoveQuizItemDecorator

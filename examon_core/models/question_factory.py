@@ -2,7 +2,7 @@ from .question import MultiChoiceQuestion, InputParameterQuestion, BaseQuestion
 from .multi_choice_factory import MultiChoiceFactory
 from .code_as_string_factory import default_code_as_string_factory
 from .code_metrics import CodeMetricsFactory
-from .code_execution.sandbox import Sandbox
+from ..code_execution.sandbox import Sandbox
 import random
 import logging
 import hashlib

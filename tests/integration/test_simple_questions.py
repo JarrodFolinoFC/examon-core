@@ -1,32 +1,37 @@
+import pytest
 from examon_core.examon_item import examon_item
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 
-@examon_item(choices=[1, 2, 3], tags=['anything'])
-def question_1():
-    return 1
+def load_fixtures():
+    @examon_item(choices=[1, 2, 3], tags=['anything'])
+    def question_1():
+        return 1
+
+    @examon_item(tags=['anything'])
+    def question_2():
+        return 2
+
+    @examon_item(param1=[1, 2, 3], tags=['anything'])
+    def question_3(x):
+        return x
+
+    @examon_item(param1=[3, 7, 3], tags=['anything'])
+    def question_4(y):
+        z = 9
+        x = 8
+        return y * 7 - 8
 
 
-@examon_item(tags=['anything'])
-def question_2():
-    return 2
-
-
-@examon_item(param1=[1, 2, 3], tags=['anything'])
-def question_3(x):
-    return x
-
-
-@examon_item(param1=[3, 7, 3], tags=['anything'])
-def question_4(y):
-    z = 9
-    x = 8
-    return y * 7 - 8
+@pytest.fixture(autouse=True)
+def run_around_tests():
+    ExamonItemRegistry.reset()
+    load_fixtures()
+    yield
+    ExamonItemRegistry.reset()
 
 
 class TestIntegrationSimpleQuestions:
-    def test_questions_callable(self):
-        assert question_1() == 1
 
     def test_count(self):
         assert len(ExamonItemRegistry.registry()) == 4

@@ -1,5 +1,5 @@
 import pytest
-from examon_core.code_metrics import CodeMetricsFactory
+from examon_core.models.code_metrics import CodeMetricsFactory
 import os
 import sys
 sys.path.append(f'{os.path.abspath("")}/examon_core')

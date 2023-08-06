@@ -1,6 +1,6 @@
-from examon_core.question import InputParameterQuestion
-from examon_core.question_response import QuestionResponse
-from examon_core.code_metrics import CodeMetricsFactory
+from examon_core.models.question import InputParameterQuestion
+from examon_core.models.question_response import QuestionResponse
+from examon_core.models.code_metrics import CodeMetricsFactory
 
 from dataclasses_serialization.json import JSONSerializer
 
