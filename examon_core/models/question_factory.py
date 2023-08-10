@@ -20,15 +20,15 @@ class QuestionFactory:
         internal_id = kwargs['internal_id'] if 'internal_id' in kwargs.keys() else None
         hints = kwargs['hints'] if 'hints' in kwargs.keys() else []
         param1 = kwargs['param1'] if 'param1' in kwargs else None
-        choice_list = []
+        result_choice_list = []
         if 'choice_list' in kwargs and kwargs['choice_list'] is not None:
-            choice_list = list(map(lambda x: str(x), kwargs['choice_list']))
+            result_choice_list = list(map(lambda x: str(x), kwargs['choice_list']))
 
         # Build
         if param1 is not None:
             question = QuestionFactory.build_input_param_question(function, param1)
-        elif choice_list is not None:
-            question = QuestionFactory.build_question(function, choice_list)
+        elif result_choice_list:
+            question = QuestionFactory.build_multichoice_question(function, result_choice_list)
         else:
             function_src = default_code_as_string_factory(function)
             print_logs = QuestionFactory.run_function(function_src)
@@ -47,7 +47,7 @@ class QuestionFactory:
         return question
 
     @staticmethod
-    def build_question(function, choice_list):
+    def build_multichoice_question(function, choice_list):
         function_src = default_code_as_string_factory(function)
         print_logs = QuestionFactory.run_function(function_src)
         question = MultiChoiceQuestion(
@@ -65,14 +65,14 @@ class QuestionFactory:
         return question
 
     @staticmethod
-    def build_input_param_question(function, param1):
-        selected_input_param = random.choice(param1)
+    def build_input_param_question(function, param_one):
+        selected_input_param = random.choice(param_one)
         function_src = default_code_as_string_factory(function, selected_input_param)
         print_logs = QuestionFactory.run_function(function_src)
         return_value = print_logs[-1]
         question = InputParameterQuestion(
             selected_param=selected_input_param,
-            choices=param1,
+            param_one_choices=param_one,
             function_src=function_src,
             print_logs=print_logs
         )

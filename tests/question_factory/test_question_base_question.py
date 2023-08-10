@@ -1,5 +1,6 @@
 from examon_core.models.question_factory import QuestionFactory
 from dataclasses_serialization.json import JSONSerializer
+from examon_core.models.question import BaseQuestion
 
 
 def question_fn():
@@ -21,6 +22,7 @@ class TestQuestionFactoryExpectedResult:
         question = QuestionFactory.build(
             function=question_fn, tags=['a'],
             hints=[])
+        assert question.__class__ == BaseQuestion
         assert question.print_logs == ['test', '7', '7']
 
     def test_build_unique_id(self):

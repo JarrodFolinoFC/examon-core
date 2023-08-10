@@ -5,11 +5,11 @@ from typing import Any
 @dataclass
 class BaseQuestion:
     unique_id: str = None
-    choices: dict = None
     function_src: str = None
     tags: list = None
     hints: list = None
     print_logs: list = None
+    correct_answer: str = None
     metrics: Any = None
 
     def answer(self, given_answer):
@@ -18,12 +18,13 @@ class BaseQuestion:
 
 @dataclass
 class MultiChoiceQuestion(BaseQuestion):
-    correct_answer: str = None
+    choices: dict = None
 
 
 @dataclass
 class InputParameterQuestion(BaseQuestion):
     return_value: str = None
+    param_one_choices: dict = None
     selected_param: str = None
 
     def answer(self, choice):

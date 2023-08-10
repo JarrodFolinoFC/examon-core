@@ -19,7 +19,7 @@ class TestInputParameterQuestion:
         question = InputParameterQuestion(
             function_src=function_src,
             return_value=6,
-            choices=choices,
+            param_one_choices=choices,
             hints=[],
             tags=[],
             selected_param=3,
@@ -30,7 +30,7 @@ class TestInputParameterQuestion:
 
         assert serialized['correct'] == question_response.correct
         assert serialized['response'] == question_response.response
-        assert serialized['question']['choices'] == question_response.question.choices
+        assert serialized['question']['param_one_choices'] == question_response.question.param_one_choices
         assert serialized['question']['return_value'] == question_response.question.return_value
         assert serialized['question']['selected_param'] == question_response.question.selected_param
         assert serialized['question']['tags'] == question_response.question.tags
