@@ -8,6 +8,7 @@ def examon_item(choices=None, tags=None, hints=None,
                 generated_choices=None, param1=None):
     def inner_function(function):
         return function
+
     return inner_function
 
 
@@ -23,6 +24,7 @@ def question_with_decorator():
     greeting += ". How are you?"
     return greeting
 
+
 @examon_item(
     choices=['Hello, Bob. How are you?'],
     tags=['strings', 'beginner']
@@ -33,6 +35,7 @@ def question_with_decorator_mutliline():
     greeting = f'Hello, {name}'
     greeting += ". How are you?"
     return greeting
+
 
 class TestCodeAsStringFactory:
     def test_default_code_with_decorator_one_line(self):

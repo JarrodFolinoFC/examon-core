@@ -1,21 +1,17 @@
 from examon_core.models.question import InputParameterQuestion
 from examon_core.models.question_response import QuestionResponse
 from examon_core.models.code_metrics import CodeMetricsFactory
+from examon_core.examon_serializer import ExamonSerializer
 
-from dataclasses_serialization.json import JSONSerializer
 
-
-function_src = """
+class TestInputParameterQuestion:
+    def test_input_parameter_question_to_json(self):
+        function_src = """
 def question(x):
     print(1)
     return (x + 3, 9)
 """
-
-choices = [3, 5, [3, 5]]
-
-
-class TestInputParameterQuestion:
-    def test_to_json(self):
+        choices = [3, 5, [3, 5]]
         question = InputParameterQuestion(
             function_src=function_src,
             return_value=6,
@@ -26,7 +22,7 @@ class TestInputParameterQuestion:
             metrics=CodeMetricsFactory.build(function_src))
         question_response = QuestionResponse(question, 2, True)
 
-        serialized = JSONSerializer.serialize(question_response)
+        serialized = ExamonSerializer.serialize(question_response)
 
         assert serialized['correct'] == question_response.correct
         assert serialized['response'] == question_response.response
