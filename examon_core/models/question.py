@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Any
+from typing import Union
 
 
 @dataclass
@@ -29,3 +30,10 @@ class InputParameterQuestion(BaseQuestion):
 
     def answer(self, choice):
         return choice == self.selected_param
+
+@dataclass
+class InputParameterQuestionV2(BaseQuestion):
+    result_matrix: dict[Any, Any] = None
+
+    def answer(self, choice):
+        return choice == self.result_matrix[choice]

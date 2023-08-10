@@ -2,3 +2,7 @@
 examon_core/__pycache__/
 tests/__pycache__/
 tests/**/__pycache__/
+examon_core/code_execution/__pycache__/
+examon_core/models/__pycache__/
+examon_core/models/__pycache__/
+examon_core/models/factories/__pycache__/
