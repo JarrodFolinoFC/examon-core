@@ -15,3 +15,10 @@ class Sandbox:
             self.print_logs = print_logs
         finally:
             self.driver.teardown()
+
+    @staticmethod
+    def run_function(source_code, driver=UnrestrictedDriver):
+        ces = Sandbox(source_code, driver)
+        ces.execute()
+
+        return ces.print_logs
