@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import logging
+import random
 
 
 @dataclass
@@ -27,6 +28,10 @@ class ExamonItemRegistry:
         cls.__registry = []
         cls.__filter = None
         cls.__tags = []
+
+    @classmethod
+    def shuffle(cls):
+        random.shuffle(cls.__registry)
 
     @classmethod
     def registry(cls, examon_filter=None):
