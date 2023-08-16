@@ -13,7 +13,7 @@ class RestrictedPythonDriver:
         pass
 
     def execute(self, source_code):
-        _print_ = PrintCollector
+        _print_ = PrintCollector   # noqa: E731,F841
 
         def inplacevar_wrapper(op, x, y):
             globs = {'x': x, 'y': y}
